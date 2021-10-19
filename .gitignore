@@ -12,6 +12,7 @@
 /[Uu]ser[Ss]ettings/
 /[Uu]nityGenerated/
 /[Ll]ocal[Cc]ache/
+/[Bb]in/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
