@@ -9,6 +9,8 @@ public class ThirdPersonMovement:  MonoBehaviour
     public CharacterController controller;
     public Transform Camera;
 
+    public bool debug = false;
+
     public float speed = 6.0f;
     public float turnSpeed = 0.1f;
     float turnVel;
@@ -25,7 +27,8 @@ public class ThirdPersonMovement:  MonoBehaviour
         // The value is in the range -1 to 1
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
-        Debug.Log(h);
+        if (debug)
+            Debug.Log(h);
 
         Vector3 direction = new Vector3(h, 0f, v).normalized;
 

@@ -19,7 +19,7 @@ public class PlayerCamera: MonoBehaviour
     public float SmoothSpeed = 0.125f;
 
     //camera transform
-    public Transform camTransform;
+    public Transform camTransform = null;
     // offset between camera and target
     public Vector3 Offset;
     // change this value to get desired smoothness
@@ -30,7 +30,8 @@ public class PlayerCamera: MonoBehaviour
  
     private void Start()
     {
-        Offset = camTransform.position - Target.position;
+        if (camTransform != null)
+            Offset = camTransform.position - Target.position;
     }
     
     private void Update () 
@@ -42,7 +43,8 @@ public class PlayerCamera: MonoBehaviour
         // update position
         Vector3 targetPosition = Target.position + Offset;
 
-        switch(ModeOfOperation){
+        if (camTransform != null)
+            switch (ModeOfOperation){
             default:
             case 1:         
                 camTransform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, SmoothTime);
