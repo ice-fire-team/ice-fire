@@ -4,74 +4,124 @@ using UnityEngine;
 
 public class TestMovement : MonoBehaviour
 {
-    private Vector3 mov;
+    private Vector3 mov, lastPos;
     [SerializeField]
     private float movVel, rotVel, jumpVel; // Velocidad de rotacion y movimiento
 
     private float grav, vertVel; // Velocidad vertical
-    [SerializeField] private Transform target;  // en el editor, referencia a la cámara
 
-    private enum PlayerStates {Idle, Run, Jump, Fall};
+    [SerializeField]
+    private Transform target;  // en el editor, referencia a la cámara
+
+    private enum playerStates {Idle, Run, Jump, Fall};
     
-    private PlayerStates currentState;
+    private playerStates currentState;
     CharacterController CC;
+
+    RaycastHit hit;
+    
+    [SerializeField]
+    float rayMargin;
+
     // Start is called before the first frame update
     void Start()
     {
-       
+        
         CC = GetComponent<CharacterController>();
+        CC.detectCollisions = true;
         vertVel = 0f;
-        currentState = PlayerStates.Idle;
+        // rayMargin = 2.1f;
+        currentState = playerStates.Idle;
     }
+
+
+    void UpdateState()
+    {
+        int layer = 1 << LayerMask.NameToLayer("Default");
+
+        bool isHit = Physics.Raycast(transform.position, Vector3.down, out hit, 10f, layer, QueryTriggerInteraction.Ignore);
+
+        if (isHit && !hit.collider.isTrigger && hit.distance <= rayMargin) // && hit.transform.tag == "Floor"
+            currentState = playerStates.Idle;
+        else
+            currentState = playerStates.Jump;    
+
+
+        switch (currentState)
+        {
+            // Toogle Idle/Run
+            case playerStates.Idle:
+            case playerStates.Run:
+                if (Vector3.Distance(transform.position, lastPos) <= 0.01) { 
+                    currentState = playerStates.Idle;
+                    vertVel = 0f;
+                }
+                else {
+                    currentState = playerStates.Run;
+                }
+            break;
+
+            // Return to Idle
+            case playerStates.Jump:
+            if (lastPos.y > transform.position.y){currentState = playerStates.Fall;}
+            break;
+            case playerStates.Fall:
+                
+            break;
+            
+        }
+        
+
+
+    }
+
 
     // Update is called once per frame
     void Update()
     {   
-        // Physics.Raycast();
 
-        currentState = PlayerStates.Idle;
-
-
+        // currentState = playerStates.Idle;
+        UpdateState();
 
         mov.x = Input.GetAxis("Horizontal");
         mov.z = Input.GetAxis("Vertical");
         mov.y = 0f;
         mov = Vector3.ClampMagnitude(mov, 1.0f);        
-
+        
         Quaternion rot = Quaternion.Euler(0f, target.eulerAngles.y, 0f);
         mov = rot * mov;
         //transform.rotation = Quaternion.LookRotation(movement);
-        Quaternion direction = Quaternion.LookRotation(mov);
-        transform.rotation = Quaternion.Lerp(transform.rotation, direction, rotVel * Time.deltaTime);
-
+        if (mov != Vector3.zero)
+        {
+            Quaternion direction = Quaternion.LookRotation(mov);
+            transform.rotation = Quaternion.Lerp(transform.rotation, direction, rotVel * Time.deltaTime);
+        }
         
 
         switch (currentState)
         {
-            case PlayerStates.Idle:
-            case PlayerStates.Run:
+            case playerStates.Idle:
+            case playerStates.Run:
             if(Input.GetButton("Jump"))
                 {
                     vertVel = jumpVel;
-                    currentState = PlayerStates.Jump;
+                    currentState = playerStates.Jump;
                 }
 
             break;
 
-            case PlayerStates.Jump:
-                vertVel = vertVel + Physics.gravity.y*Time.deltaTime;
-            break;
-
-            case PlayerStates.Fall:
+            case playerStates.Jump:
+            case playerStates.Fall:
                 vertVel = vertVel + Physics.gravity.y*Time.deltaTime;
             break;
 
         }
 
-        vertVel = Mathf.Max(vertVel + Physics.gravity.y/3*Time.deltaTime, -10);
         mov.y = vertVel;
         mov *= movVel;
 
         CC.Move(mov*Time.deltaTime*movVel);
+        lastPos = transform.position;
     }
+
 }
