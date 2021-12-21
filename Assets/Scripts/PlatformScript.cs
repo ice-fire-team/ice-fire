@@ -9,7 +9,7 @@ public class PlatformScript : MonoBehaviour
     // Start is called before the first frame update
     private void OnTriggerEnter(Collider col)
     {
-        if(col.gameObject == player) {player.transform.parent = transform;}
+        if(col.gameObject.tag == "Player") {player.transform.parent = transform;}
         Debug.Log("Collider Entered");
     }
 

@@ -7,6 +7,8 @@ public class KaiKoriController : MonoBehaviour
 {
     public bool activePlayer;
 
+    [SerializeField]
+    Transform spawnPoint;
     private Vector3 mov, lastPos;
     [SerializeField]
     private float movVel, rotVel, jumpVel; // Velocidad de rotacion y movimiento
@@ -33,6 +35,7 @@ public class KaiKoriController : MonoBehaviour
         CC = GetComponent<CharacterController>();
         rb = GetComponent<Rigidbody>();
         vertVel = 0f;
+        grav = Physics.gravity.y;
         // rayMargin = 2.1f;
         currentState = playerStates.Idle;
     }
@@ -83,6 +86,13 @@ public class KaiKoriController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
+        // Dead
+        if(transform.position.y <= -20)
+        {
+            this.transform.position = spawnPoint.transform.position;
+            this.transform.forward = spawnPoint.transform.forward;
+            vertVel = 0f;
+        }
         if (!activePlayer)
         {
             return ;
@@ -119,7 +129,7 @@ public class KaiKoriController : MonoBehaviour
 
             case playerStates.Jump:
             case playerStates.Fall:
-                vertVel = vertVel + Physics.gravity.y*Time.deltaTime;
+                vertVel = vertVel + grav*Time.deltaTime;
             break;
 
         }
