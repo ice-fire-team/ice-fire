@@ -20,11 +20,12 @@ public class KaiKoriController : MonoBehaviour
 
     private enum playerStates {Idle, Run, Jump, Fall};
     [SerializeField]
-    private playerStates currentState;
+    //private playerStates currentState;
     CharacterController CC;
     Rigidbody rb;
     RaycastHit hit;
-    
+    public Animator animacion;
+    private ControllerColliderHit _contact;
     [SerializeField]
     float rayMargin;
 
@@ -36,51 +37,58 @@ public class KaiKoriController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         vertVel = 0f;
         grav = Physics.gravity.y;
+        _contact = GetComponent<ControllerColliderHit>();
         // rayMargin = 2.1f;
-        currentState = playerStates.Idle;
+        //currentState = playerStates.Idle;
     }
 
 
-    void UpdateState()
-    {   
+    //void UpdateState()
+    //{   
         
-        int layer = 1 << LayerMask.NameToLayer("Default");
+    //    int layer = 1 << LayerMask.NameToLayer("Default");
 
-        bool isHit = Physics.Raycast(transform.position, Vector3.down, out hit, 10f, layer, QueryTriggerInteraction.Ignore);
+    //    bool isHit = Physics.Raycast(transform.position, Vector3.down, out hit, 10f, layer, QueryTriggerInteraction.Ignore);
 
-        if (isHit && !hit.collider.isTrigger && hit.distance <= rayMargin) // && hit.transform.tag == "Floor"
-            currentState = playerStates.Idle;
-        else
-            currentState = playerStates.Jump;
+    //    if (isHit && !hit.collider.isTrigger && hit.distance <= rayMargin) // && hit.transform.tag == "Floor"
+    //    {
+    //        currentState = playerStates.Idle;
+    //        animacion.SetBool("Jumping", false);
+    //    }
+    //    else
+    //    { 
+    //        currentState = playerStates.Jump;
+    //        animacion.SetBool("Jumping", true);
+    //    }
 
 
-        switch (currentState)
-        {
-            // Toogle Idle/Run
-            case playerStates.Idle:
-            case playerStates.Run:
-                if (Vector3.Distance(transform.position, lastPos) <= 0.01) { 
-                    currentState = playerStates.Idle;
-                    vertVel = 0f;
-                }
-                else {
-                    currentState = playerStates.Run;
-                }
-            break;
+    //    switch (currentState)
+    //    {
+    //        // Toogle Idle/Run
+    //        case playerStates.Idle:
+    //        case playerStates.Run:
+    //            if (Vector3.Distance(transform.position, lastPos) <= 0.01) { 
+    //                currentState = playerStates.Idle;
+    //                vertVel = 0f;
+    //            }
+    //            else {
+    //                currentState = playerStates.Run;
+    //            }
+    //        break;
 
-            // Return to Idle
-            case playerStates.Jump:
-            if (lastPos.y > transform.position.y){currentState = playerStates.Fall;}
-            break;
-            case playerStates.Fall:
+    //        // Return to Idle
+    //        case playerStates.Jump:
+    //        if (lastPos.y > transform.position.y){currentState = playerStates.Fall;}
+    //        break;
+    //        case playerStates.Fall:
                 
-            break;
+    //        break;
             
-        }
+    //    }
         
 
 
-    }
+    //}
 
 
     // Update is called once per frame
@@ -98,7 +106,7 @@ public class KaiKoriController : MonoBehaviour
             return ;
         }
         // currentState = playerStates.Idle;
-        UpdateState();
+        //UpdateState();
 
         mov.x = Input.GetAxis("Horizontal");
         mov.z = Input.GetAxis("Vertical");
@@ -113,26 +121,78 @@ public class KaiKoriController : MonoBehaviour
             Quaternion direction = Quaternion.LookRotation(mov);
             transform.rotation = Quaternion.Lerp(transform.rotation, direction, rotVel*Time.deltaTime);
         }
-        
 
-        switch (currentState)
+        animacion.SetFloat("Speed", mov.sqrMagnitude);
+        bool hitGround = false;
+        RaycastHit hit;
+        if (vertVel < 0 && Physics.Raycast(transform.position, Vector3.down, out hit))
         {
-            case playerStates.Idle:
-            case playerStates.Run:
-            if(Input.GetButton("Jump"))
-                {
-                    vertVel = jumpVel;
-                    currentState = playerStates.Jump;
-                }
-
-            break;
-
-            case playerStates.Jump:
-            case playerStates.Fall:
-                vertVel = vertVel + grav*Time.deltaTime;
-            break;
-
+            float check = (CC.radius) / (4f / 0.5f);
+            hitGround = hit.distance <= check;
         }
+
+        ////*
+        //if (_charController.isGrounded)
+        if (hitGround)
+        {
+            if (Input.GetButtonDown("Jump"))
+            {
+                vertVel = jumpVel;
+            }
+            else
+            {
+                vertVel = -1.5f;
+
+                animacion.SetBool("Jumping", false);
+            }
+        }
+        else
+        {
+            vertVel += grav * Time.deltaTime;
+            if (vertVel < -10f)
+            {
+                vertVel = -10f;
+            }
+
+            if (_contact != null)
+            {
+                animacion.SetBool("Jumping", true);
+            }
+
+            if (CC.isGrounded)
+            {
+                if (Vector3.Dot(mov, _contact.normal) < 0f)
+                {
+                    mov = _contact.normal * movVel;
+                }
+                else
+                {
+                    mov += _contact.normal * movVel;
+                }
+            }
+        }
+        //switch (currentState)
+        //{
+        //    case playerStates.Idle:
+        //        if (Input.GetButton("Jump"))
+        //        {
+        //            vertVel = jumpVel;
+        //            currentState = playerStates.Jump;
+
+        //        }
+
+        //        break;
+        //    case playerStates.Run:
+
+
+
+        //    case playerStates.Jump:
+        //        break;
+        //    case playerStates.Fall:
+        //        vertVel = vertVel + grav*Time.deltaTime;
+        //        break;
+
+        //}
 
         mov.y = vertVel;
         mov *= movVel;
@@ -141,6 +201,10 @@ public class KaiKoriController : MonoBehaviour
         // rb.velocity = mov*movVel;
         // transform.position += mov * Time.deltaTime * movVel;
         lastPos = transform.position;
+    }
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        _contact = hit;
     }
 
 }

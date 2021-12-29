@@ -8,7 +8,6 @@ public class SceneManagerScript : MonoBehaviour
     [SerializeField]
     GameObject Kai, Kori;
     KaiKoriController KaiController, KoriController;
-
     [SerializeField]
     CinemachineFreeLook KaiCam, KoriCam;
     bool KaiKori;
@@ -19,7 +18,9 @@ public class SceneManagerScript : MonoBehaviour
         KaiKori = true;
         KaiController = Kai.GetComponent<KaiKoriController>();
         KoriController = Kori.GetComponent<KaiKoriController>();
-    
+        KaiController.animacion = Kai.GetComponent<Animator>();
+        //KoriController.animacion = Kori.GetComponent<Animator>();
+
     }
 
     
