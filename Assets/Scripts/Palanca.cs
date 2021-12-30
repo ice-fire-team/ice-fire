@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Palanca : MonoBehaviour {
     //private Animator puerta;
-    GameObject puertaK;
+    GameObject puertaK, lever;
     private Transform puerta;
     public bool Open;
     public float Aopen = 95f;
@@ -18,11 +18,13 @@ public class Palanca : MonoBehaviour {
         Open = false;
         Palanca_activada = false;
         puertaK = GameObject.Find("PuertaKori");
+        lever = GameObject.Find("lever");
         puerta = puertaK.GetComponent<Transform>();
     }
     public void AbrirPuerta()
     {
         if(Palanca_activada) Open = true;
+
        
     }
     public void Pulsar_boton()

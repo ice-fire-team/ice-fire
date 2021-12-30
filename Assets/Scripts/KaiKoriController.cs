@@ -111,7 +111,8 @@ public class KaiKoriController : MonoBehaviour
         mov.x = Input.GetAxis("Horizontal");
         mov.z = Input.GetAxis("Vertical");
         mov.y = 0f;
-        mov = Vector3.ClampMagnitude(mov, 1.0f);        
+        mov = Vector3.ClampMagnitude(mov, 1.0f);
+        //mov *= movVel;
         
         Quaternion rot = Quaternion.Euler(0f, target.eulerAngles.y, 0f);
         mov = rot * mov;
@@ -135,9 +136,11 @@ public class KaiKoriController : MonoBehaviour
         //if (_charController.isGrounded)
         if (hitGround)
         {
+            animacion.SetBool("Air", false);
             if (Input.GetButtonDown("Jump"))
             {
                 vertVel = jumpVel;
+                animacion.SetBool("Jumping", true);
             }
             else
             {
@@ -148,7 +151,7 @@ public class KaiKoriController : MonoBehaviour
         }
         else
         {
-            vertVel += grav * Time.deltaTime;
+            vertVel += grav * Time.deltaTime*0.5f;
             if (vertVel < -10f)
             {
                 vertVel = -10f;
@@ -156,11 +159,12 @@ public class KaiKoriController : MonoBehaviour
 
             if (_contact != null)
             {
-                animacion.SetBool("Jumping", true);
-            }
+                animacion.SetBool("Air", true);
+            }           
 
             if (CC.isGrounded)
             {
+                
                 if (Vector3.Dot(mov, _contact.normal) < 0f)
                 {
                     mov = _contact.normal * movVel;

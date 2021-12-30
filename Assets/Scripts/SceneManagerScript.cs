@@ -19,7 +19,7 @@ public class SceneManagerScript : MonoBehaviour
         KaiController = Kai.GetComponent<KaiKoriController>();
         KoriController = Kori.GetComponent<KaiKoriController>();
         KaiController.animacion = Kai.GetComponent<Animator>();
-        //KoriController.animacion = Kori.GetComponent<Animator>();
+        KoriController.animacion = Kori.GetComponent<Animator>();
 
     }
 

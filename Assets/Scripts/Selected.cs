@@ -81,27 +81,28 @@ public class Selected : MonoBehaviour
             Deselect();
         }
         ;
-        //Debug.DrawRay(transform.position + Vector3.up * 1.5f, transform.TransformDirection(Vector3.forward) * distancia, Color.red);
-        //Debug.DrawRay(transform.position + Vector3.up * 1.5f, transform.TransformDirection(0.5f , 0f, 1f) * distancia, Color.red);
-        //Debug.DrawRay(transform.position + Vector3.up * 1.5f, transform.TransformDirection(-0.5f, 0f, 1f) * distancia, Color.red);
-        //Debug.DrawRay(transform.position + Vector3.up * 1.5f, transform.TransformDirection(0.5f, 0.5f, 1f) * distancia, Color.red);
-        //Debug.DrawRay(transform.position + Vector3.up * 1.5f, transform.TransformDirection(-0.5f, 0.5f, 1f) * distancia, Color.red);
-        //Debug.DrawRay(transform.position + Vector3.up * 1.5f, transform.TransformDirection(0.5f, -0.5f, 1f) * distancia, Color.red);
-        //Debug.DrawRay(transform.position + Vector3.up * 1.5f, transform.TransformDirection(-0.5f, -0.5f, 1f) * distancia, Color.red);
-        //Debug.DrawRay(transform.position + Vector3.up * 1.5f, transform.TransformDirection(0f, 0.5f, 1f) * distancia, Color.red);
-        //Debug.DrawRay(transform.position + Vector3.up * 1.5f, transform.TransformDirection(0f, -0.5f, 1f) * distancia, Color.red);
+        Debug.DrawRay(transform.position + Vector3.up * 1.5f, transform.TransformDirection(Vector3.forward) * distancia, Color.red);
+        Debug.DrawRay(transform.position + Vector3.up * 1.5f, transform.TransformDirection(0.5f , 0f, 1f) * distancia, Color.red);
+        Debug.DrawRay(transform.position + Vector3.up * 1.5f, transform.TransformDirection(-0.5f, 0f, 1f) * distancia, Color.red);
+        Debug.DrawRay(transform.position + Vector3.up * 1.5f, transform.TransformDirection(0.5f, 0.5f, 1f) * distancia, Color.red);
+        Debug.DrawRay(transform.position + Vector3.up * 1.5f, transform.TransformDirection(-0.5f, 0.5f, 1f) * distancia, Color.red);
+        Debug.DrawRay(transform.position + Vector3.up * 1.5f, transform.TransformDirection(0.5f, -0.5f, 1f) * distancia, Color.red);
+        Debug.DrawRay(transform.position + Vector3.up * 1.5f, transform.TransformDirection(-0.5f, -0.5f, 1f) * distancia, Color.red);
+        Debug.DrawRay(transform.position + Vector3.up * 1.5f, transform.TransformDirection(0f, 0.5f, 1f) * distancia, Color.red);
+        Debug.DrawRay(transform.position + Vector3.up * 1.5f, transform.TransformDirection(0f, -0.5f, 1f) * distancia, Color.red);
 
     }
     void SelectedObject(RaycastHit hit)
     {
-        hit.transform.GetComponent<Renderer>().material.color = Color.green;
+        hit.transform.GetComponent<MeshRenderer>().material.color = Color.green;
+
         ultimoReconocido = hit.transform.gameObject;
     }
     void Deselect()
     {
         if(ultimoReconocido)
         {
-            ultimoReconocido.GetComponent<Renderer>().material.color = Color.white;
+            ultimoReconocido.GetComponent<MeshRenderer>().material.color = Color.white;
             ultimoReconocido = null;
         }
     }
