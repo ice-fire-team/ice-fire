@@ -8,6 +8,7 @@ TagManager:
   - Palanca
   - Cableado
   - Agua
+  - Boton
   layers:
   - Default
   - TransparentFX

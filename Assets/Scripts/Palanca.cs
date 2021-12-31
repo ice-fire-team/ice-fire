@@ -5,6 +5,7 @@ using UnityEngine;
 public class Palanca : MonoBehaviour {
     //private Animator puerta;
     GameObject puertaK, lever;
+    public GameObject texto_palanca;
     private Transform puerta;
     public bool Open;
     public float Aopen = 95f;
@@ -20,16 +21,27 @@ public class Palanca : MonoBehaviour {
         puertaK = GameObject.Find("PuertaKori");
         lever = GameObject.Find("lever");
         puerta = puertaK.GetComponent<Transform>();
+        texto_palanca.SetActive(false);
     }
     public void AbrirPuerta()
     {
-        if(Palanca_activada) Open = true;
+        if (Palanca_activada)
+        {
+            texto_palanca.SetActive(false);
+            lever.GetComponent<Animator>().SetTrigger("Activado");
+            Open = !Open;
 
+        } else
+        {
+            texto_palanca.SetActive(true);
+        }
+       
        
     }
     public void Pulsar_boton()
     {
-        Palanca_activada = !Palanca_activada;
+
+        Palanca_activada = true;
 
     }
     void Update()

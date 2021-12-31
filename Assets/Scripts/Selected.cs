@@ -8,19 +8,20 @@ public class Selected : MonoBehaviour
     LayerMask mask;
     private Transform transform;
     int Kai_Kori;
-    public GameObject DetTexto;
-    GameObject Kai, Kori, Camera;
+    public GameObject DetTexto,texto_palanca;
+    GameObject Kai, Kori, Camera, palanca;
     GameObject ultimoReconocido = null;
     // Start is called before the first frame update
     void Start()
     {
         mask = LayerMask.GetMask("LayerDet");
         DetTexto.SetActive(false);
+        texto_palanca.SetActive(false);
         Kai_Kori = 0;
         Kai = GameObject.Find("Kai");
         Kori = GameObject.Find("Kori");
         //Camera = GameObject.Find("MainCamera");
-
+        palanca = GameObject.Find("lever");
         transform = Kai.GetComponent<Transform>();
 
     }
@@ -58,17 +59,21 @@ public class Selected : MonoBehaviour
             
             Deselect();
             SelectedObject(hit);
-            if (hit.collider.tag == "Cableado")
+            if (hit.collider.tag == "Boton")
             {
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    GameObject Palanca = GameObject.Find("boton1");
-                    Palanca.GetComponent<Palanca>().Pulsar_boton();
+                    GameObject boton = GameObject.Find("boton1");
+                    boton.GetComponent<Animator>().SetTrigger("Pulsado");
+                    boton.GetComponent<AudioSource>().Play();
+                    palanca.GetComponent<Palanca>().Pulsar_boton();
+                    
                 }
             }else if (hit.collider.tag == "Palanca")
             {
                 if (Input.GetKeyDown(KeyCode.E))
                 {
+                    
                     hit.collider.transform.GetComponent<Palanca>().AbrirPuerta();
 
                 }
@@ -115,6 +120,7 @@ public class Selected : MonoBehaviour
         }else
         {
            DetTexto.SetActive(false);
+           texto_palanca.SetActive(false);
         }
     }
 }
