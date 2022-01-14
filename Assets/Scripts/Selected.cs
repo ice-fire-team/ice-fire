@@ -46,15 +46,16 @@ public class Selected : MonoBehaviour
                 transform = Kai.GetComponent<Transform>();
             }
         }
-        if (Physics.Raycast(transform.position + Vector3.up * 1.5f, transform.TransformDirection(Vector3.forward) *distancia, out hit, distancia, mask)||
-            Physics.Raycast(transform.position + Vector3.up * 1.5f, transform.TransformDirection(0.5f, 0f, 1f) * distancia, out hit, distancia, mask)||
-            Physics.Raycast(transform.position + Vector3.up * 1.5f, transform.TransformDirection(-0.5f, 0f, 1f) * distancia, out hit, distancia, mask) ||
-            Physics.Raycast(transform.position + Vector3.up * 1.5f, transform.TransformDirection(-0.5f, 0.5f, 1f) * distancia, out hit, distancia, mask) ||
-            Physics.Raycast(transform.position + Vector3.up * 1.5f, transform.TransformDirection(0.5f, 0.5f, 1f) * distancia, out hit, distancia, mask) ||
-            Physics.Raycast(transform.position + Vector3.up * 1.5f, transform.TransformDirection(-0.5f, -0.5f, 1f) * distancia, out hit, distancia, mask) ||
-            Physics.Raycast(transform.position + Vector3.up * 1.5f, transform.TransformDirection(0.5f, -0.5f, 1f) * distancia, out hit, distancia, mask) ||
-            Physics.Raycast(transform.position + Vector3.up * 1.5f, transform.TransformDirection(0f, 0.5f, 1f) * distancia, out hit, distancia, mask) ||
-            Physics.Raycast(transform.position + Vector3.up * 1.5f, transform.TransformDirection(0f, -0.5f, 1f) * distancia, out hit, distancia, mask))
+        Vector3 vector = new Vector3(0f, 2.5f, 0.5f);
+        if (Physics.Raycast(transform.position + vector, transform.TransformDirection(Vector3.forward) *distancia, out hit, distancia, mask)||
+            Physics.Raycast(transform.position + vector, transform.TransformDirection(0.5f, 0f, 1f) * distancia, out hit, distancia, mask)||
+            Physics.Raycast(transform.position + vector, transform.TransformDirection(-0.5f, 0f, 1f) * distancia, out hit, distancia, mask) ||
+            Physics.Raycast(transform.position + vector, transform.TransformDirection(-0.5f, 0.5f, 1f) * distancia, out hit, distancia, mask) ||
+            Physics.Raycast(transform.position + vector, transform.TransformDirection(0.5f, 0.5f, 1f) * distancia, out hit, distancia, mask) ||
+            Physics.Raycast(transform.position + vector, transform.TransformDirection(-0.5f, -0.5f, 1f) * distancia, out hit, distancia, mask) ||
+            Physics.Raycast(transform.position + vector, transform.TransformDirection(0.5f, -0.5f, 1f) * distancia, out hit, distancia, mask) ||
+            Physics.Raycast(transform.position + vector, transform.TransformDirection(0f, 0.5f, 1f) * distancia, out hit, distancia, mask) ||
+            Physics.Raycast(transform.position + vector, transform.TransformDirection(0f, -0.5f, 1f) * distancia, out hit, distancia, mask))
         {
             
             Deselect();
@@ -86,15 +87,15 @@ public class Selected : MonoBehaviour
             Deselect();
         }
         ;
-        Debug.DrawRay(transform.position + Vector3.up * 1.5f, transform.TransformDirection(Vector3.forward) * distancia, Color.red);
-        Debug.DrawRay(transform.position + Vector3.up * 1.5f, transform.TransformDirection(0.5f , 0f, 1f) * distancia, Color.red);
-        Debug.DrawRay(transform.position + Vector3.up * 1.5f, transform.TransformDirection(-0.5f, 0f, 1f) * distancia, Color.red);
-        Debug.DrawRay(transform.position + Vector3.up * 1.5f, transform.TransformDirection(0.5f, 0.5f, 1f) * distancia, Color.red);
-        Debug.DrawRay(transform.position + Vector3.up * 1.5f, transform.TransformDirection(-0.5f, 0.5f, 1f) * distancia, Color.red);
-        Debug.DrawRay(transform.position + Vector3.up * 1.5f, transform.TransformDirection(0.5f, -0.5f, 1f) * distancia, Color.red);
-        Debug.DrawRay(transform.position + Vector3.up * 1.5f, transform.TransformDirection(-0.5f, -0.5f, 1f) * distancia, Color.red);
-        Debug.DrawRay(transform.position + Vector3.up * 1.5f, transform.TransformDirection(0f, 0.5f, 1f) * distancia, Color.red);
-        Debug.DrawRay(transform.position + Vector3.up * 1.5f, transform.TransformDirection(0f, -0.5f, 1f) * distancia, Color.red);
+        Debug.DrawRay(transform.position + vector, transform.TransformDirection(Vector3.forward) * distancia, Color.red);
+        Debug.DrawRay(transform.position + vector, transform.TransformDirection(0.5f , 0f, 1f) * distancia, Color.red);
+        Debug.DrawRay(transform.position + vector, transform.TransformDirection(-0.5f, 0f, 1f) * distancia, Color.red);
+        Debug.DrawRay(transform.position + vector, transform.TransformDirection(0.5f, 0.5f, 1f) * distancia, Color.red);
+        Debug.DrawRay(transform.position + vector, transform.TransformDirection(-0.5f, 0.5f, 1f) * distancia, Color.red);
+        Debug.DrawRay(transform.position + vector, transform.TransformDirection(0.5f, -0.5f, 1f) * distancia, Color.red);
+        Debug.DrawRay(transform.position + vector, transform.TransformDirection(-0.5f, -0.5f, 1f) * distancia, Color.red);
+        Debug.DrawRay(transform.position + vector, transform.TransformDirection(0f, 0.5f, 1f) * distancia, Color.red);
+        Debug.DrawRay(transform.position + vector, transform.TransformDirection(0f, -0.5f, 1f) * distancia, Color.red);
 
     }
     void SelectedObject(RaycastHit hit)

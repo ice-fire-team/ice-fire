@@ -128,7 +128,7 @@ public class KaiKoriController : MonoBehaviour
         RaycastHit hit;
         if (vertVel < 0 && Physics.Raycast(transform.position, Vector3.down, out hit))
         {
-            float check = (CC.radius) / (4f / 0.5f);
+            float check = (CC.radius) / (4f);
             hitGround = hit.distance <= check;
         }
 
