@@ -37,7 +37,7 @@ public class KaiKoriController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         vertVel = 0f;
         grav = Physics.gravity.y;
-        _contact = GetComponent<ControllerColliderHit>();
+        //_contact = GetComponent<ControllerColliderHit>();
         // rayMargin = 2.1f;
         //currentState = playerStates.Idle;
     }
@@ -126,7 +126,7 @@ public class KaiKoriController : MonoBehaviour
         animacion.SetFloat("Speed", mov.sqrMagnitude);
         bool hitGround = false;
         RaycastHit hit;
-        if (vertVel < 0 && Physics.Raycast(transform.position, Vector3.down, out hit))
+        if (vertVel < 0 && Physics.Raycast(transform.position, Vector3.down *1.1f, out hit))
         {
             float check = (CC.radius) / (4f);
             hitGround = hit.distance <= check;
@@ -160,11 +160,11 @@ public class KaiKoriController : MonoBehaviour
             if (_contact != null)
             {
                 animacion.SetBool("Air", true);
-            }           
+            }
 
             if (CC.isGrounded)
             {
-                
+
                 if (Vector3.Dot(mov, _contact.normal) < 0f)
                 {
                     mov = _contact.normal * movVel;
@@ -193,7 +193,7 @@ public class KaiKoriController : MonoBehaviour
         //    case playerStates.Jump:
         //        break;
         //    case playerStates.Fall:
-        //        vertVel = vertVel + grav*Time.deltaTime;
+        //        vertVel = vertVel + grav * Time.deltaTime;
         //        break;
 
         //}
