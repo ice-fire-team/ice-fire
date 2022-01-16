@@ -198,8 +198,8 @@ public class KaiKoriController : MonoBehaviour
 
         //}
 
-        mov.y = vertVel;
         mov *= movVel;
+        mov.y = vertVel;
 
         CC.Move(mov*Time.deltaTime*movVel);
         // rb.velocity = mov*movVel;
