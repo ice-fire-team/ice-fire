@@ -8,7 +8,7 @@ public class MenuPausa : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField]
-    GameObject canvasPausa, canvasOpciones, canvasSalir;
+    GameObject canvasPausa, canvasOpciones, canvasSalir,camara;
     Slider slider;
     [SerializeField]
     Button[] boton;
@@ -32,18 +32,16 @@ public class MenuPausa : MonoBehaviour
 
             pausa();
         }
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            resume();
-        }
     }
     void resume()
     {
+        camara.GetComponent<AudioListener>().enabled = true;
         Time.timeScale = 1;
         canvasPausa.SetActive(false);
     }
     void pausa()
     {
+        camara.GetComponent<AudioListener>().enabled = false;
         Time.timeScale = 0;
         canvasPausa.SetActive(true);
     }

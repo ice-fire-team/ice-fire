@@ -11,8 +11,7 @@ public class MainMenu : MonoBehaviour
     void Start()
     {
         boton[0].onClick.AddListener(jugar);
-        boton[1].onClick.AddListener(opciones);
-        boton[2].onClick.AddListener(salir);
+        boton[1].onClick.AddListener(salir);
     }
 
     // Update is called once per frame
@@ -22,8 +21,6 @@ public class MainMenu : MonoBehaviour
             salir();
         if (Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.J))
             jugar();
-        if (Input.GetKey(KeyCode.O))
-            opciones();
 
     }
 
@@ -36,9 +33,5 @@ public class MainMenu : MonoBehaviour
     void jugar()
     {
         SceneManager.LoadScene("FirstLevel");
-    }
-    void opciones()
-    {
-        SceneManager.LoadScene("Opciones");
     }
 }

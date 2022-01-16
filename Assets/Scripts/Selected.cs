@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Selected : MonoBehaviour
 {
-    public float distancia = 7.5f;
+    public float distancia;
     LayerMask mask;
     private Transform transform;
     int Kai_Kori;
     public GameObject DetTexto,texto_palanca;
-    GameObject Kai, Kori, Camera, palanca;
+    GameObject Kai, Kori, Camera, palanca, palancaP;
     GameObject ultimoReconocido = null;
     // Start is called before the first frame update
     void Start()
@@ -22,6 +22,7 @@ public class Selected : MonoBehaviour
         Kori = GameObject.Find("Kori");
         //Camera = GameObject.Find("MainCamera");
         palanca = GameObject.Find("lever");
+        palancaP = GameObject.Find("PalancaP");
         transform = Kai.GetComponent<Transform>();
 
     }
@@ -46,7 +47,7 @@ public class Selected : MonoBehaviour
                 transform = Kai.GetComponent<Transform>();
             }
         }
-        Vector3 vector = new Vector3(0f, 2.5f, 0.5f);
+        Vector3 vector = new Vector3(0f, 2.5f, 0f);
         if (Physics.Raycast(transform.position + vector, transform.TransformDirection(Vector3.forward) *distancia, out hit, distancia, mask)||
             Physics.Raycast(transform.position + vector, transform.TransformDirection(0.5f, 0f, 1f) * distancia, out hit, distancia, mask)||
             Physics.Raycast(transform.position + vector, transform.TransformDirection(-0.5f, 0f, 1f) * distancia, out hit, distancia, mask) ||
@@ -77,6 +78,23 @@ public class Selected : MonoBehaviour
                     
                     hit.collider.transform.GetComponent<Palanca>().AbrirPuerta();
 
+                }
+            }
+            if (hit.collider.tag == "PalancaP")
+            {
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    palancaP.GetComponent<ActivarPlataforma>().activar();
+                }
+            }
+            if (hit.collider.tag == "Boton2")
+            {
+                if (Input.GetKeyDown(KeyCode.E)) 
+                { 
+                    GameObject boton2 = GameObject.Find("boton2");
+                    boton2.GetComponent<Animator>().SetTrigger("Pulsado");
+                    boton2.GetComponent<AudioSource>().Play();
+                    boton2.GetComponent<Boton2>().AbrirPuerta();
                 }
             }
 
