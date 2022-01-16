@@ -34,18 +34,8 @@ if (c.r < 255) c.r += 2;
 if (c.g < 255) c.g += 2;
 if (c.b < 255) c.b += 2;
 image.color = c;
-//Evaluación de condiciones de cambio de estado
-//Se puede acabar la presentación por tiempo
-if (Time.time - startTime > TimeOut)
-State = SplashStates.Finish;
-if (Input.GetKey(KeyCode.Escape) || //Si se pulsa la tecla escape
-Input.GetKey(KeyCode.Return) || //Si se pulsa la tecla enter
-Input.GetKey(KeyCode.Space)) //Si se pulsa la tecla espacio
-State = SplashStates.Finish;
 break;
-case SplashStates.Finish:
-    SceneManager.LoadScene("Game");
-    break;
+
 default: break;
 }
 }

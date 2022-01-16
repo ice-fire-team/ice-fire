@@ -15,7 +15,6 @@ public class FinalTrigger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     void OnTriggerEnter(Collider col)  
@@ -28,10 +27,7 @@ public class FinalTrigger : MonoBehaviour
     
     void OnTriggerExit(Collider col)
     {
-        if(col.gameObject.tag == "Player")
-        {
             hasPlayer = false;
-        } 
     }
     
 

@@ -57,6 +57,7 @@ public class MenuPausa : MonoBehaviour
     }
     void si()
     {
+        camara.GetComponent<AudioListener>().enabled = false;
         Time.timeScale = 1;
         SceneManager.LoadScene("Splash");
     }
