@@ -100,6 +100,8 @@ public class KaiKoriController : MonoBehaviour
             this.transform.position = spawnPoint.transform.position;
             this.transform.forward = spawnPoint.transform.forward;
             vertVel = 0f;
+            GameObject camara = GameObject.Find("MainCamera");
+            camara.GetComponent<AudioSource>().Play();
         }
         if (!activePlayer)
         {
