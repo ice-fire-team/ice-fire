@@ -29,6 +29,8 @@ public class KaiKoriController : MonoBehaviour
     [SerializeField]
     float rayMargin;
 
+    AudioSource[] sources;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +39,7 @@ public class KaiKoriController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         vertVel = 0f;
         grav = Physics.gravity.y;
+        sources = GetComponents<AudioSource>();
         //_contact = GetComponent<ControllerColliderHit>();
         // rayMargin = 2.1f;
         //currentState = playerStates.Idle;
@@ -141,6 +144,10 @@ public class KaiKoriController : MonoBehaviour
             animacion.SetBool("Air", false);
             if (Input.GetButtonDown("Jump"))
             {
+                foreach (AudioSource audio_s in sources)
+                {
+                    audio_s.Play();
+                }
                 vertVel = jumpVel;
                 animacion.SetBool("Jumping", true);
             }
