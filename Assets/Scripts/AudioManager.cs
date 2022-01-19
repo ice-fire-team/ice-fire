@@ -14,7 +14,8 @@ public class AudioManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        slider.onValueChanged.AddListener(updateVolume);
+        AS = GetComponent<AudioSource>();
+        slider.onValueChanged.AddListener(delegate{updateVolume(slider.value) ;});
         slider.value=0.5f;
         
     }
