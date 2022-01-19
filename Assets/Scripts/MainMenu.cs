@@ -14,7 +14,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField]
     Button[] botonSalir;
     [SerializeField]
-    GameObject canvasP, canvasN, canvasSalir;
+    GameObject canvasP, canvasN, canvasSalir, texto;
     void Start()
     {
         boton[0].onClick.AddListener(jugar);
@@ -27,6 +27,7 @@ public class MainMenu : MonoBehaviour
         botonSalir[1].onClick.AddListener(no);
         canvasN.SetActive(false);
         canvasSalir.SetActive(false);
+        texto.SetActive(false);
     }
 
     // Update is called once per frame
@@ -39,6 +40,7 @@ public class MainMenu : MonoBehaviour
     {
         canvasSalir.SetActive(true);
         canvasP.SetActive(false);
+        texto.SetActive(false);
     }
     void si()
     {
@@ -49,28 +51,33 @@ public class MainMenu : MonoBehaviour
     {
         canvasSalir.SetActive(false);
         canvasP.SetActive(true);
+        texto.SetActive(false);
     }
     void jugar()
     {
         canvasP.SetActive(false);
         canvasN.SetActive(true);
+        texto.SetActive(false);
     }
 
     void nivel1()
     {
-        SceneManager.LoadScene("FirstLevel");
+        SceneManager.LoadScene("FirstLevel"); texto.SetActive(false);
     }
     void nivel2()
     {
-        SceneManager.LoadScene("SecondLevel");
+        SceneManager.LoadScene("SecondLevel"); texto.SetActive(false);
     }
     void nivel3()
-    {
 
+    {
+        canvasN.SetActive(true);
+        texto.SetActive(true);
     }
     void atras()
     {
         canvasN.SetActive(false);
         canvasP.SetActive(true);
+        texto.SetActive(false);
     }
 }
