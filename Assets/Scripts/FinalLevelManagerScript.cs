@@ -49,6 +49,18 @@ public class FinalLevelManagerScript : MonoBehaviour
             // Destroy(this);
 
         }
+        if(Input.GetKeyDown("2")){
+            // Cambiamos respawns antiguos
+            respawnOldKai.transform.position = respawnKai.transform.position;
+            respawnOldKori.transform.position = respawnKori.transform.position;
+
+            // Cambiamos positions de los players
+            Kai.transform.position = respawnOldKai.transform.position;
+            Kori.transform.position = respawnOldKori.transform.position;
+            // Desactivamos el hasPlayer
+            final_Kai.hasPlayer = false;
+            final_Kori.hasPlayer = false;
+        }
     }
     void jugar()
     {
