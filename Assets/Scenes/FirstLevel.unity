@@ -220,6 +220,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pendulo (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3472750363295021019, guid: 22995b35fab7c2347ae4aab3095894f1, type: 3}
+      propertyPath: m_TagString
+      value: Pendulo
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22995b35fab7c2347ae4aab3095894f1, type: 3}
 --- !u!1 &29954256 stripped
@@ -2754,7 +2758,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Jugar
+  m_Text: Continuar
 --- !u!222 &372249150
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6085,7 +6089,7 @@ MonoBehaviour:
   m_CollideAgainst:
     serializedVersion: 2
     m_Bits: 1
-  m_IgnoreTag: 
+  m_IgnoreTag: Pendulo
   m_TransparentLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -10002,6 +10006,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pendulo (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 3472750363295021019, guid: 22995b35fab7c2347ae4aab3095894f1, type: 3}
+      propertyPath: m_TagString
+      value: Pendulo
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22995b35fab7c2347ae4aab3095894f1, type: 3}
 --- !u!1 &1127830064 stripped
@@ -10403,7 +10411,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1145684866}
-  m_LocalRotation: {x: 0.00011259556, y: 0.99959075, z: 0.028330429, w: -0.0039727404}
+  m_LocalRotation: {x: 0.00011259637, y: 0.99959075, z: 0.02833043, w: -0.00397277}
   m_LocalPosition: {x: 248.50371, y: 13.599998, z: -415.30325}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -15670,6 +15678,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pendulo (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3472750363295021019, guid: 22995b35fab7c2347ae4aab3095894f1, type: 3}
+      propertyPath: m_TagString
+      value: Pendulo
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22995b35fab7c2347ae4aab3095894f1, type: 3}
 --- !u!1 &1733053375
@@ -16515,6 +16527,10 @@ PrefabInstance:
     - target: {fileID: 3472750363295021019, guid: 22995b35fab7c2347ae4aab3095894f1, type: 3}
       propertyPath: m_Name
       value: Pendulo (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3472750363295021019, guid: 22995b35fab7c2347ae4aab3095894f1, type: 3}
+      propertyPath: m_TagString
+      value: Pendulo
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22995b35fab7c2347ae4aab3095894f1, type: 3}
@@ -17533,7 +17549,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1990782528}
-  m_LocalRotation: {x: -0.00013326439, y: 0.99977064, z: -0.020397324, w: -0.006531925}
+  m_LocalRotation: {x: -0.00013326432, y: 0.99977064, z: -0.020397324, w: -0.006531922}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -18740,7 +18756,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2146807335}
-  m_LocalRotation: {x: -0.17799327, y: 0.98361576, z: 0.027169243, w: -0.0089569995}
+  m_LocalRotation: {x: -0.17799327, y: 0.98361576, z: 0.02716924, w: -0.008957029}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -20017,12 +20033,12 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132148865454545}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: fe4fc711a845c4048b27de23ec2ff00d, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -20113,7 +20129,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132148865454545}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 74480870e28bfef4cbc7946dc188e4c8, type: 3}
@@ -20230,7 +20246,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132149500786274}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 827d14921890e5e4f8361a407d94e9f3, type: 3}
@@ -20326,13 +20342,13 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132149500786274}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: fe4fc711a845c4048b27de23ec2ff00d, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
-  m_Pitch: 1
+  m_Volume: 0.3
+  m_Pitch: 0.6
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -26223,6 +26239,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3472750363295021019, guid: 22995b35fab7c2347ae4aab3095894f1, type: 3}
       propertyPath: m_Name
+      value: Pendulo
+      objectReference: {fileID: 0}
+    - target: {fileID: 3472750363295021019, guid: 22995b35fab7c2347ae4aab3095894f1, type: 3}
+      propertyPath: m_TagString
       value: Pendulo
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -41,5 +41,11 @@ public class SceneManagerScript : MonoBehaviour
         KoriController.activePlayer = !KaiKori;
         KaiCam.m_Priority = index;
         KoriCam.m_Priority = 1 - index;
+        KaiController.animacion.SetBool("Jumping", false);
+        KaiController.animacion.SetBool("Air", false);
+        KaiController.animacion.SetFloat("Speed", 0);
+        KoriController.animacion.SetBool("Jumping", false);
+        KoriController.animacion.SetBool("Air", false);
+        KoriController.animacion.SetFloat("Speed", 0);
     }
 }
