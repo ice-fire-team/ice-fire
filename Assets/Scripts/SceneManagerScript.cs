@@ -30,6 +30,7 @@ public class SceneManagerScript : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.C)){ToogleKaiKori();}
+        
     }
 
 
