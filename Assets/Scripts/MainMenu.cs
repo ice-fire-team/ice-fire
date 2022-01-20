@@ -45,7 +45,7 @@ public class MainMenu : MonoBehaviour
     void si()
     {
         Application.Quit();
-        // UnityEditor.EditorApplication.isPlaying = false;
+        //UnityEditor.EditorApplication.isPlaying = false;
     }
     void no()
     {
