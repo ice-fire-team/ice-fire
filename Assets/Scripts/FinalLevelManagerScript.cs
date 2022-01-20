@@ -64,9 +64,12 @@ public class FinalLevelManagerScript : MonoBehaviour
     }
     void jugar()
     {
+        /*
         camara.GetComponent<AudioListener>().enabled = true;
-        Time.timeScale = 1;
         canvas.SetActive(false);
+        */
+        Time.timeScale = 1;
+        SceneManager.LoadScene("SecondLevel");
     }
     void salir()
     {

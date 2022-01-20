@@ -6,7 +6,7 @@ public class Selected : MonoBehaviour
 {
     public float distancia;
     LayerMask mask;
-    private Transform transform;
+    private new Transform transform;
     int Kai_Kori;
     public GameObject DetTexto,texto_palanca;
     GameObject Kai, Kori, Camera, palanca, palancaP;

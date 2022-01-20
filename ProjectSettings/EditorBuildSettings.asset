@@ -8,13 +8,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Splash.unity
     guid: 2c34c6000dc9c8744be5886b5da63bd5
-  - enabled: 0
-    path: Assets/Scenes/Opciones.unity
-    guid: 761c0c2cd2108a841b55a13895d82b1f
-  - enabled: 1
-    path: Assets/Scenes/SecondLevel.unity
-    guid: 8871d2ee6691bac47946d36aaf54fb8f
   - enabled: 1
     path: Assets/Scenes/FirstLevel.unity
     guid: add1df14e67677f4bbf5d767b05bf965
+  - enabled: 1
+    path: Assets/Scenes/SecondLevel.unity
+    guid: 8871d2ee6691bac47946d36aaf54fb8f
+  - enabled: 0
+    path: Assets/Scenes/Opciones.unity
+    guid: 761c0c2cd2108a841b55a13895d82b1f
   m_configObjects: {}
